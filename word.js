@@ -15,7 +15,7 @@ class Word {
         },
     
         this.display = () => {
-            userDisplay = '\n SECRET WORD: '
+            userDisplay = '\n \n WORD : '
             let counter = 0;
             for (let o of this.word){     
                 let guessed = objects[counter].display();
@@ -25,12 +25,16 @@ class Word {
             console.log(userDisplay + '\n')
         },    
         this.guess = (letter) =>{
+            let points = 0;
             let counter = 0;
             for (let o of this.word){
-                objects[counter].validate(letter);
+                // objects[counter].validate(letter);
+                points += objects[counter].validate(letter);
                 counter +=1
             }
             this.display();
+            return (points >= 1)? 'right':'wrong';
+           
         }
     }
 }

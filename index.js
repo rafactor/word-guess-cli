@@ -7,6 +7,8 @@ var category = ['sports','history','geography'];
 var selectedWord;
 var lettersRegEx = /[a-zA-Z]/
 var word;
+var attempts = 10;
+var complete = false;
 
 var listOfWords = {
   sports: [
@@ -26,7 +28,23 @@ var listOfWords = {
   ]
 }
 
-console.log('\n *** Welcome to WORD GUESS game * CLI * *** \n');
+
+ reset = () => {
+  console.log('**********          ¯\\_(ツ)_/¯ No more guesses... YOU LOSE!          **********')
+  console.log('**********                    Lets try again! ٩( ᐛ )و                **********')
+
+  selectedWord = undefined;
+  attempts = 10;
+  word = undefined;
+}
+
+validate = () =>{
+
+}
+
+console.log('********************************************************************************')
+console.log('**********                         WO_D GUESS G_ME                    **********')
+console.log('******************************************************************************** \n')
 
 var selection = [
   {
@@ -48,10 +66,10 @@ var questions = [
     validate: (value) => {
       var valid = value.match(lettersRegEx);
       if (valid === null){
-      return valid || 'Please type a letter. Special characters are not valid.'
+        return valid || 'Please type a letter. Special characters are not valid.'
       } else {
-        word.guess(value.toLowerCase())
-        // console.log(word)
+        return true;
+
       }
     }
     
@@ -59,14 +77,13 @@ var questions = [
 ];
 
 function ask() {
-
   if (selectedWord === undefined){
 
     inquirer.prompt(selection).then(answers => {
       
       //get the word based on a random number from the selected category list length
         let n = Math.floor(Math.random() * listOfWords[answers.category].length);
-        selectedWord = listOfWords[answers.category][n]
+        selectedWord = listOfWords[answers.category][n].toLowerCase()
 
         //create an object with the new word
         word = new Word(selectedWord);
@@ -75,19 +92,40 @@ function ask() {
         // console.log(word)
         ask()
     })
-  } else {
+  } 
+  else {
+
     inquirer.prompt(questions).then(answers => {
+     
+      if (complete) {
+        console.log('You Win!')
+      }
+        let guessedLetter = answers.letter.toLowerCase()
+        console.log(answers.letter)
+        ask()
+        // word.guess(answers.leter.toLowerCase())
       
-       console.log('game')
+        // if (guessReturn === 'right') {
+        //   console.log(`(☞ﾟヮﾟ)☞  Yeah! ${value} was a good guess! `)
+        // } 
+        // else {
+        //   if (attempts === 1) {
+        //      reset();
+        //      return true;
+
+        //   } 
+        //   else {
+
+        //     attempts -=1
+        //     console.log(`Sorry... you only have ${attempts} left...`)
+        //   }
+        // }
+
+
     })
   }
     
 
-    // if (answers.category) {
-    
-    // } else {
-    //   console.log('Your favorite TV Shows:', output.join(', '));
-    // }
 
       
  
