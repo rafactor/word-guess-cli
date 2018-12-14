@@ -15,14 +15,14 @@ class Word {
         },
     
         this.display = () => {
-            userDisplay = 'word to guess: '
+            userDisplay = '\n SECRET WORD: '
             let counter = 0;
             for (let o of this.word){     
                 let guessed = objects[counter].display();
                 counter += 1;
                 userDisplay += guessed + ' '
             }
-            console.log(userDisplay)
+            console.log(userDisplay + '\n')
         },    
         this.guess = (letter) =>{
             let counter = 0;
@@ -37,12 +37,12 @@ class Word {
 
 module.exports = Word;
 
-var test = new Word('rafael');
+// var test = new Word('rafael');
 
-test.build()
-test.guess('a')
-test.guess('e')
-test.guess('r')
-test.guess('k')
-test.guess('l')
+// test.build()
+// test.guess('a')
+// test.guess('e')
+// test.guess('r')
+// test.guess('k')
+// test.guess('l')
 
