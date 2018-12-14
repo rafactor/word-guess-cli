@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/rafactor/word-guess-cli#readme",
   "dependencies": {
-    "inquirer": "^6.2.1"
+    "inquirer": "^6.2.1",
+    "prompt": "^1.0.0"
   }
 }
